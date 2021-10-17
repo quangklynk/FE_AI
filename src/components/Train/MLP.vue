@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Huấn luyện với J48</h1>
+    <h1>Huấn luyện với MLP</h1>
     <div class="wrapp-box">
       <input @change="getPath" type="file" name="" id="" />
       <div>
@@ -13,7 +13,6 @@
     </div>
     <h1>Kết quả sau khi huấn luyện</h1>
     <el-row>
-      <el-col :span="12"><div class="image" id="tree"></div></el-col>
       <el-col :span="12">
         <pre>
         {{ result }}
@@ -25,13 +24,9 @@
 
 <script>
 import axios from "axios";
-import Viz from "viz.js";
-import workerURL from "file-loader!viz.js/full.render.js";
-// import Viz from "viz.js";
 export default {
   data() {
     return {
-      result: "",
       data: {
         path: "",
       },
@@ -40,6 +35,7 @@ export default {
         size: "",
         name: "",
       },
+      result: "",
     };
   },
   methods: {
@@ -52,8 +48,6 @@ export default {
         .post(`j48/train`, this.data)
         .then((result) => {
           this.result = result.data.data.result;
-          console.log(this.result);
-          this.show(result.data.data.tree);
         })
         .catch((err) => {
           console.log(err);
@@ -64,17 +58,8 @@ export default {
       this.property.size = e.target.files[0].size;
       this.data.path = this.defaulPath + e.target.files[0].name;
     },
-    show(tree) {
-      console.log(this.$viz);
-      var viz = new Viz({ workerURL });
-      viz.renderSVGElement(tree).then(function(element) {
-        document.getElementById("tree").appendChild(element);
-      });
-    },
   },
-  mounted() {
-    this.show();
-  },
+  mounted() {},
 };
 </script>
 

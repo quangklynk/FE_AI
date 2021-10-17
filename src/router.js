@@ -6,6 +6,9 @@ import  Menu  from "./components/Menu.vue";
 import  Test  from "./components/Test/Index.vue";
 import  Train  from "./components/Train/Index.vue";
 
+// import  Test  from "./components/Test/Index.vue";
+import  Train_MLP  from "./components/Train/MLP.vue";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -15,8 +18,10 @@ const router = new Router({
       path: "/",
       component: Menu,
       children: [
-        { path: "/test", component: Test },
-        { path: "/train", component: Train },
+        { path: "/test/j48", component: Test },
+        { path: "/train/j48", component: Train },
+        { path: "/test/mlp", component: Test },
+        { path: "/train/mlp", component: Train_MLP },
       ],
     },
   ],
