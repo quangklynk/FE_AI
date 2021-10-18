@@ -67,7 +67,9 @@ export default {
     show(tree) {
       console.log(this.$viz);
       var viz = new Viz({ workerURL });
-      viz.renderSVGElement(tree).then(function(element) {
+      viz.renderSVGElement(tree).then(function (element) {
+        var list = document.getElementById("tree");
+        list.removeChild(list.childNodes[0]);
         document.getElementById("tree").appendChild(element);
       });
     },
