@@ -13,12 +13,15 @@
     </div>
     <h1>Kết quả sau khi huấn luyện</h1>
     <el-row>
-      <el-col :span="12"><div class="image" id="tree"></div></el-col>
       <el-col :span="12">
         <pre>
         {{ result }}
         </pre>
       </el-col>
+    </el-row>
+    <h1>Sơ đồ cây</h1>
+    <el-row>
+      <div class="image" id="tree"></div>
     </el-row>
   </div>
 </template>
@@ -69,7 +72,9 @@ export default {
       var viz = new Viz({ workerURL });
       viz.renderSVGElement(tree).then(function (element) {
         var list = document.getElementById("tree");
-        list.removeChild(list.childNodes[0]);
+        if (list.childNodes[0]) {
+          list.removeChild(list.childNodes[0]);
+        }
         document.getElementById("tree").appendChild(element);
       });
     },
