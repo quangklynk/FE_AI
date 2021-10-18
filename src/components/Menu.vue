@@ -1,6 +1,6 @@
 <template>
-  <el-container style="height: 100vh">
-    <el-aside style="background-color: rgb(238, 241, 246)">
+  <el-container style="height: 100vh;">
+    <el-aside style="background-color: rgb(238, 241, 246);">
       <h5 class="name-project">Chức năng</h5>
       <el-menu
         default-active="2"
@@ -19,7 +19,9 @@
             <el-menu-item index="1-1">Cây quyết định (J48)</el-menu-item>
           </router-link>
 
-          <el-menu-item index="1-2">MLP</el-menu-item>
+          <router-link to="/test/mlp">
+            <el-menu-item index="1-2">MLP</el-menu-item>
+          </router-link>
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">
