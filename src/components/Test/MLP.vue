@@ -8,143 +8,157 @@
         label-width="120px"
         class="demo-ruleForm"
       >
-        <el-form-item label="Tên máy tinh" prop="name">
+        <el-form-item label="Tên máy tính" prop="name">
           <el-input v-model="ruleForm.name"></el-input>
         </el-form-item>
-        <el-form-item label="Hãng" prop="region">
-          <el-select v-model="ruleForm.region" placeholder="Hãng">
-            <el-option label="Zone one" value="shanghai"></el-option>
-            <el-option label="Zone two" value="beijing"></el-option>
+        <el-form-item label="Hãng" prop="manufactureId">
+          <el-select v-model="ruleForm.manufactureId" placeholder="Hãng">
+            <el-option
+              v-for="item in data.brand"
+              :key="item.id"
+              :label="item.brandName"
+              :value="item.id"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-row>
           <el-col :span="12">
-            <el-form-item label="CPU" required>
-              <el-select v-model="ruleForm.region" placeholder="Hãng">
-                <el-option label="Zone one" value="shanghai"></el-option>
-                <el-option label="Zone two" value="beijing"></el-option>
+            <el-form-item label="CPU" prop="cpuId">
+              <el-select v-model="ruleForm.cpuId" placeholder="CPU">
+                <el-option
+                  v-for="item in data.cpu"
+                  :key="item.id"
+                  :label="item.cpuName"
+                  :value="item.id"
+                ></el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="GPU" prop="resource">
-              <el-select v-model="ruleForm.region" placeholder="Hãng">
-                <el-option label="Zone one" value="shanghai"></el-option>
-                <el-option label="Zone two" value="beijing"></el-option>
+            <el-form-item label="GPU" prop="gpuId">
+              <el-select v-model="ruleForm.gpuId" placeholder="GPU">
+                <el-option
+                  v-for="item in data.gpu"
+                  :key="item.id"
+                  :label="item.gpuName"
+                  :value="item.id"
+                ></el-option>
               </el-select>
             </el-form-item>
           </el-col>
         </el-row>
-
-        <el-form-item label="Dung Lượng" prop="delivery">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="Dung Lượng" prop="capacity">
+          <el-input v-model.number="ruleForm.capacity"></el-input>
         </el-form-item>
         <el-row>
           <el-col :span="8">
-            <el-form-item label="Bluetooth" prop="type">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="Bluetooth">
+              <el-switch
+                v-model="ruleForm.bluetooth"
+              ></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
-            <el-form-item label="Camera" prop="resource">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="Camera">
+              <el-switch v-model="ruleForm.camera"></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
-            <el-form-item label="Cổng Lan" prop="resource">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="Cổng Lan">
+              <el-switch v-model="ruleForm.lan"></el-switch> </el-form-item
           ></el-col>
         </el-row>
 
-        <el-form-item label="Bộ Nhớ Đệm" prop="type">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="Bộ Nhớ Đệm" prop="cache">
+          <el-input v-model.number="ruleForm.cache"></el-input>
         </el-form-item>
 
-        <el-form-item label="Màu sắc" prop="resource">
-          <el-radio-group v-model="ruleForm.resource">
+        <el-form-item label="Màu sắc" prop="color">
+          <el-radio-group v-model="ruleForm.color">
             <el-radio label="Sáng"></el-radio>
             <el-radio label="Tối"></el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="Màn Hình" prop="resource">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="Màn Hình" prop="display">
+          <el-input v-model="ruleForm.display"></el-input>
         </el-form-item>
         <el-row>
           <el-col :span="8">
-            <el-form-item label="Tai Nghe" prop="resource">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="Tai Nghe">
+              <el-switch
+                v-model="ruleForm.headphone"
+              ></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
-            <el-form-item label="Bàn Phím" prop="resource">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="Bàn Phím">
+              <el-switch v-model="ruleForm.keyboard"></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
-            <el-form-item label="Chuột" prop="resource">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="Chuột">
+              <el-switch v-model="ruleForm.mouse"></el-switch> </el-form-item
           ></el-col>
         </el-row>
         <el-row>
           <el-col :span="8">
-            <el-form-item label="Thẻ Nhớ" prop="resource">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="Thẻ Nhớ">
+              <el-switch v-model="ruleForm.memSlot"></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
-            <el-form-item label="USB" prop="resource">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="USB">
+              <el-switch v-model="ruleForm.usb"></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
-            <el-form-item label="WIRELESS" prop="resource">
-              <el-switch v-model="ruleForm.delivery"></el-switch> </el-form-item
+            <el-form-item label="WIRELESS">
+              <el-switch v-model="ruleForm.wireless"></el-switch> </el-form-item
           ></el-col>
         </el-row>
-        <el-form-item label="Số Khe" prop="resource">
+        <el-form-item label="Số Khe">
           <el-input-number
-            v-model="num"
+            v-model="ruleForm.memCardSlot"
             :step="2"
             step-strictly
           ></el-input-number>
         </el-form-item>
-        <el-form-item label="Hệ Điều Hành" prop="resource">
-          <el-select v-model="ruleForm.region" placeholder="Hệ Điều Hành">
-            <el-option label="Window" value="shanghai"></el-option>
-            <el-option label="MacOS" value="beijing"></el-option>
-            <el-option label="Linux" value="beijing"></el-option>
-            <el-option label="Kali" value="beijing"></el-option>
+        <el-form-item label="Hệ Điều Hành" prop="os">
+          <el-select v-model="ruleForm.os" placeholder="Hệ Điều Hành">
+            <el-option label="Window" value="Window"></el-option>
+            <el-option label="MacOS" value="MacOS"></el-option>
+            <el-option label="Linux" value="Linux"></el-option>
+            <el-option label="Kali" value="Kali"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="Giá" prop="resource">
-          <el-input v-model="ruleForm.name">
+        <el-form-item label="Giá" prop="price">
+          <el-input v-model.number="ruleForm.price">
             <template slot="prepend">đ</template>
           </el-input>
         </el-form-item>
         <el-form-item label="RAM">
           <el-input-number
-            v-model="num"
+            v-model="ruleForm.ram"
             :step="2"
             step-strictly
           ></el-input-number>
         </el-form-item>
-        <el-form-item label="Độ Phân Giải" prop="resource">
-          <el-radio-group v-model="ruleForm.resource">
+        <el-form-item label="Độ Phân Giải" prop="resolution">
+          <el-radio-group v-model="ruleForm.resolution">
             <el-radio label="HD"></el-radio>
             <el-radio label="FullHD"></el-radio>
             <el-radio label="2K"></el-radio>
             <el-radio label="4K"></el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="Tốc Độ Vòng Quay" prop="resource">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="Tốc Độ Vòng Quay" prop="rpm">
+          <el-input v-model.number="ruleForm.rpm"></el-input>
         </el-form-item>
-        <el-form-item label="Tốc Độ" prop="resource">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="Tốc Độ" prop="speed">
+          <el-input v-model.number="ruleForm.speed"></el-input>
         </el-form-item>
-
-        <el-form-item label="Trọng Lượng" prop="resource">
-          <el-input v-model="ruleForm.name">
+        <el-form-item label="Trọng Lượng" prop="weight">
+          <el-input v-model.number="ruleForm.weight">
             <template slot="append">g</template>
           </el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
-            >Create</el-button
+            >Thêm</el-button
           >
           <el-button @click="resetForm('ruleForm')">Reset</el-button>
         </el-form-item>
@@ -154,77 +168,125 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       ruleForm: {
+        manufactureId: null,
         name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
+        cpuId: null,
+        speed: "",
+        cache: 0,
+        ram: 4,
+        memSlot: null,
+        capacity: 128,
+        rpm: "",
+        display: "",
+        resolution: "4k",
+        gpuId: "",
+        wireless: false,
+        lan: false,
+        bluetooth: false,
+        keyboard: false,
+        mouse: false,
+        usb: false,
+        displayPort: "",
+        memCardSlot: 2,
+        headphone: false,
+        camera: false,
+        battery: "",
+        os: "",
+        weight: "",
+        color: "",
+        price: 0,
+        datasetPath: "D:/DuLieu.arff",
+      },
+      data: {
+        brand: [],
+        cpu: [],
+        gpu: [],
       },
       rules: {
         name: [
           {
             required: true,
-            message: "Please input Activity name",
-            trigger: "blur",
-          },
-          {
-            min: 3,
-            max: 5,
-            message: "Length should be 3 to 5",
+            message: "Vui lòng nhập tên",
             trigger: "blur",
           },
         ],
-        region: [
+        manufactureId: [
           {
             required: true,
-            message: "Please select Activity zone",
+            message: "Vui lòng chọn hãng",
             trigger: "change",
           },
         ],
-        date1: [
+        cpuId: [
           {
-            type: "date",
             required: true,
-            message: "Please pick a date",
+            message: "Vui lòng chọn CPU",
             trigger: "change",
           },
         ],
-        date2: [
+        gpuId: [
           {
-            type: "date",
             required: true,
-            message: "Please pick a time",
+            message: "Vui lòng chọn GPU",
             trigger: "change",
           },
         ],
-        type: [
+        capacity: [
+          { required: true, message: "Nhập dung lượng" },
+          { type: "number", message: "Dung lượng phải là số" },
+        ],
+        cache: [
+          { required: true, message: "Nhập bộ nhớ đệm" },
+          { type: "number", message: "Bộ nhớ đệm phải là số" },
+        ],
+        color: [
           {
-            type: "array",
             required: true,
-            message: "Please select at least one activity type",
+            message: "Vui lòng chọn màu",
             trigger: "change",
           },
         ],
-        resource: [
+        display: [
           {
             required: true,
-            message: "Please select activity resource",
-            trigger: "change",
-          },
-        ],
-        desc: [
-          {
-            required: true,
-            message: "Please input activity form",
+            message: "Vui lòng nhập màng hình",
             trigger: "blur",
           },
+        ],
+        os: [
+          {
+            required: true,
+            message: "Vui lòng chọn hệ điều hành",
+            trigger: "change",
+          },
+        ],
+        price: [
+          { required: true, message: "Nhập giá" },
+          { type: "number", message: "Giá phải là số" },
+        ],
+        resolution: [
+          {
+            required: true,
+            message: "Vui lòng chọn màu",
+            trigger: "change",
+          },
+        ],
+        rpm: [
+          { required: true, message: "Nhập bộ tốc độ vòng quay" },
+          { type: "number", message: "Tốc độ vòng quay phải là số" },
+        ],
+        speed: [
+          { required: true, message: "Nhập tốc độ" },
+          { type: "number", message: "Tốc Độ phải là số" },
+        ],
+        weight: [
+          { required: true, message: "Nhập trọng lượng" },
+          { type: "number", message: "Trọng lượng phải là số" },
         ],
       },
     };
@@ -233,9 +295,25 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          console.log(this.ruleForm);
+          axios
+            .post("computer/mlp", this.ruleForm)
+            .then((result) => {
+              console.log(result);
+              this.$notify({
+                title: "Success",
+                message: "Thêm thành công",
+                type: "success",
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
-          console.log("error submit!!");
+          this.$notify.error({
+            title: "Error",
+            message: "Thất bại",
+          });
           return false;
         }
       });
@@ -243,8 +321,42 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+    getBrand() {
+      axios
+        .get("brand")
+        .then((result) => {
+          this.data.brand = result.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getCPU() {
+      axios
+        .get("cpu")
+        .then((result) => {
+          this.data.cpu = result.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getGPU() {
+      axios
+        .get("gpu")
+        .then((result) => {
+          this.data.gpu = result.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
-  created() {},
+  async created() {
+    this.getBrand();
+    this.getCPU();
+    this.getGPU();
+  },
 };
 </script>
 

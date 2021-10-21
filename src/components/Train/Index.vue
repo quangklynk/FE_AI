@@ -43,6 +43,7 @@ export default {
         size: "",
         name: "",
       },
+     
     };
   },
   methods: {
