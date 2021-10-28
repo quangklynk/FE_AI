@@ -1,6 +1,6 @@
 <template>
-  <el-container style="height: 100vh;">
-    <el-aside style="background-color: rgb(238, 241, 246);">
+  <el-container style="height: 100vh">
+    <el-aside style="background-color: rgb(238, 241, 246)">
       <h5 class="name-project">Chức năng</h5>
       <el-menu
         default-active="2"
@@ -30,14 +30,20 @@
           </template>
 
           <router-link to="/train/j48">
-            <el-menu-item index="2-1">
-              Cây quyết định (J48)
-            </el-menu-item>
+            <el-menu-item index="2-1"> Cây quyết định (J48) </el-menu-item>
           </router-link>
           <router-link to="/train/mlp">
             <el-menu-item index="2-2">MLP</el-menu-item>
           </router-link>
         </el-submenu>
+        <router-link to="/computer">
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-tickets"></i>
+              <span>Máy tính</span>
+            </template>
+          </el-submenu>
+        </router-link>
       </el-menu>
     </el-aside>
 
@@ -54,7 +60,10 @@
 </template>
 
 <script>
-export default {};
+
+export default {
+
+};
 </script>
 
 <style>

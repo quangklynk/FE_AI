@@ -9,6 +9,8 @@ import  Train  from "./components/Train/Index.vue";
 import  Test_MLP  from "./components/Test/MLP.vue";
 import  Train_MLP  from "./components/Train/MLP.vue";
 
+import  Computer  from "./components/Computer/Index.vue";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -22,6 +24,7 @@ const router = new Router({
         { path: "/train/j48", component: Train },
         { path: "/test/mlp", component: Test_MLP },
         { path: "/train/mlp", component: Train_MLP },
+        { path: "/computer", component: Computer },
       ],
     },
   ],

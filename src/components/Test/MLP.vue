@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Test trên thuật toán MLP</h1>
     <div class="wrap-form">
       <el-form
         :model="ruleForm"
@@ -55,15 +56,31 @@
             <el-form-item label="Bluetooth">
               <el-switch
                 v-model="ruleForm.bluetooth"
+                active-value="Có"
+                inactive-value="Không"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
               ></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
             <el-form-item label="Camera">
-              <el-switch v-model="ruleForm.camera"></el-switch> </el-form-item
+              <el-switch
+                v-model="ruleForm.camera"
+                active-value="Có"
+                inactive-value="Không"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+              ></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
             <el-form-item label="Cổng Lan">
-              <el-switch v-model="ruleForm.lan"></el-switch> </el-form-item
+              <el-switch
+                v-model="ruleForm.lan"
+                active-value="Có"
+                inactive-value="Không"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+              ></el-switch> </el-form-item
           ></el-col>
         </el-row>
 
@@ -85,29 +102,63 @@
             <el-form-item label="Tai Nghe">
               <el-switch
                 v-model="ruleForm.headphone"
+                active-value="Có"
+                inactive-value="Không"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
               ></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
             <el-form-item label="Bàn Phím">
-              <el-switch v-model="ruleForm.keyboard"></el-switch> </el-form-item
+              <el-switch
+                v-model="ruleForm.keyboard"
+                active-value="Có"
+                inactive-value="Không"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+              ></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
             <el-form-item label="Chuột">
-              <el-switch v-model="ruleForm.mouse"></el-switch> </el-form-item
+              <el-switch
+                v-model="ruleForm.mouse"
+                active-value="Có"
+                inactive-value="Không"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+              ></el-switch> </el-form-item
           ></el-col>
         </el-row>
         <el-row>
           <el-col :span="8">
             <el-form-item label="Thẻ Nhớ">
-              <el-switch v-model="ruleForm.memSlot"></el-switch> </el-form-item
+              <el-switch
+                v-model="ruleForm.memSlot"
+                active-value="1"
+                inactive-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+              ></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
             <el-form-item label="USB">
-              <el-switch v-model="ruleForm.usb"></el-switch> </el-form-item
+              <el-switch
+                v-model="ruleForm.usb"
+                active-value="Có"
+                inactive-value="Không"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+              ></el-switch> </el-form-item
           ></el-col>
           <el-col :span="8">
             <el-form-item label="WIRELESS">
-              <el-switch v-model="ruleForm.wireless"></el-switch> </el-form-item
+              <el-switch
+                v-model="ruleForm.wireless"
+                active-value="Có"
+                inactive-value="Không"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+              ></el-switch> </el-form-item
           ></el-col>
         </el-row>
         <el-form-item label="Số Khe">
@@ -156,6 +207,9 @@
             <template slot="append">g</template>
           </el-input>
         </el-form-item>
+        <el-form-item label="Pin" prop="battery">
+          <el-input v-model.number="ruleForm.battery"> </el-input>
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
             >Thêm</el-button
@@ -179,28 +233,28 @@ export default {
         speed: "",
         cache: 0,
         ram: 4,
-        memSlot: null,
+        memSlot: "1",
         capacity: 128,
         rpm: "",
         display: "",
         resolution: "4k",
         gpuId: "",
-        wireless: false,
-        lan: false,
-        bluetooth: false,
-        keyboard: false,
-        mouse: false,
-        usb: false,
+        wireless: "Không",
+        lan: "Không",
+        bluetooth: "Không",
+        keyboard: "Không",
+        mouse: "Không",
+        usb: "Không",
         displayPort: "",
         memCardSlot: 2,
-        headphone: false,
-        camera: false,
-        battery: "",
+        headphone: "Không",
+        camera: "Không",
+        battery: 0,
         os: "",
-        weight: "",
+        weight: 0,
         color: "",
         price: 0,
-        datasetPath: "D:/DuLieu.arff",
+        datasetPath: "D:\\DuLieu.arff",
       },
       data: {
         brand: [],
@@ -287,6 +341,10 @@ export default {
         weight: [
           { required: true, message: "Nhập trọng lượng" },
           { type: "number", message: "Trọng lượng phải là số" },
+        ],
+        battery: [
+          { required: true, message: "Nhập pin" },
+          { type: "number", message: "Pin phải là số" },
         ],
       },
     };
