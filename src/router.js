@@ -11,6 +11,10 @@ import  Train_MLP  from "./components/Train/MLP.vue";
 
 import  Computer  from "./components/Computer/Index.vue";
 
+import  Data  from "./components/Data/Index.vue";
+import  CPU  from "./components/Data/CPU.vue";
+import  Brand  from "./components/Data/Brand.vue";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -25,6 +29,9 @@ const router = new Router({
         { path: "/test/mlp", component: Test_MLP },
         { path: "/train/mlp", component: Train_MLP },
         { path: "/computer", component: Computer },
+        { path: "/data", component: Data },
+        { path: "/cpu", component: CPU },
+        { path: "/brand", component: Brand },
       ],
     },
   ],

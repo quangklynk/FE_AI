@@ -165,6 +165,8 @@
           <el-input-number
             v-model="ruleForm.memCardSlot"
             :step="2"
+            :max="8"
+            :min="1"
             step-strictly
           ></el-input-number>
         </el-form-item>
@@ -185,6 +187,8 @@
           <el-input-number
             v-model="ruleForm.ram"
             :step="2"
+            :min="2"
+            :max="256"
             step-strictly
           ></el-input-number>
         </el-form-item>
@@ -208,7 +212,9 @@
           </el-input>
         </el-form-item>
         <el-form-item label="Pin" prop="battery">
-          <el-input v-model.number="ruleForm.battery"> </el-input>
+          <el-input v-model.number="ruleForm.battery">
+            <template slot="append">giờ</template>
+          </el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
@@ -225,6 +231,33 @@
 import axios from "axios";
 export default {
   data() {
+    var checkBattery = (rule, value, callback) => {
+      if (value < 0) {
+        callback(new Error("Pin phải lớn 0"));
+      } else if (value > 50) {
+        callback(new Error("Pin phải bé hơn 50"));
+      } else {
+        callback();
+      }
+    };
+    var checkWeight = (rule, value, callback) => {
+      if (value < 300) {
+        callback(new Error("Trọng lượng phải lớn hơn 300g"));
+      } else if (value > 50) {
+        callback(new Error("Trọng lượng phải bé hơn 10000g"));
+      } else {
+        callback();
+      }
+    };
+    var checkPrice = (rule, value, callback) => {
+      if (value < 5000000) {
+        callback(new Error("Giá phải lớn hơn 5tr"));
+      } else if (value > 200000000) {
+        callback(new Error("Giá phải bé hơn 200tr"));
+      } else {
+        callback();
+      }
+    };
     return {
       ruleForm: {
         manufactureId: null,
@@ -249,9 +282,9 @@ export default {
         memCardSlot: 2,
         headphone: "Không",
         camera: "Không",
-        battery: 0,
+        battery: "",
         os: "",
-        weight: 0,
+        weight: "",
         color: "",
         price: 0,
         datasetPath: "D:\\DuLieu.arff",
@@ -266,6 +299,12 @@ export default {
           {
             required: true,
             message: "Vui lòng nhập tên",
+            trigger: "blur",
+          },
+          {
+            min: 3,
+            max: 50,
+            message: "Độ dài nên từ 3 đến 50 kí tự",
             trigger: "blur",
           },
         ],
@@ -311,6 +350,12 @@ export default {
             message: "Vui lòng nhập màng hình",
             trigger: "blur",
           },
+          {
+            min: 3,
+            max: 50,
+            message: "Độ dài nên từ 3 đến 50 kí tự",
+            trigger: "blur",
+          },
         ],
         os: [
           {
@@ -322,6 +367,7 @@ export default {
         price: [
           { required: true, message: "Nhập giá" },
           { type: "number", message: "Giá phải là số" },
+          { validator: checkPrice, trigger: "blur" },
         ],
         resolution: [
           {
@@ -341,10 +387,12 @@ export default {
         weight: [
           { required: true, message: "Nhập trọng lượng" },
           { type: "number", message: "Trọng lượng phải là số" },
+          { validator: checkWeight, trigger: "blur" },
         ],
         battery: [
           { required: true, message: "Nhập pin" },
           { type: "number", message: "Pin phải là số" },
+          { validator: checkBattery, trigger: "blur" },
         ],
       },
     };
@@ -358,10 +406,11 @@ export default {
             .post("computer/mlp", this.ruleForm)
             .then((result) => {
               console.log(result);
-              this.$notify({
+               this.$notify({
                 title: "Success",
-                message: "Thêm thành công",
+                message: `Thêm thành công ${result.data.data.name}, dữ liệu được phân lớp: ${result.data.data.classifyDes}`,
                 type: "success",
+                duration: 0
               });
             })
             .catch((err) => {

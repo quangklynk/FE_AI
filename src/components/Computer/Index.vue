@@ -1,8 +1,7 @@
 <template>
   <div>
     <el-table :data="data.computer" style="width: 100%" border>
-      <el-table-column fixed prop="id" label="ID">
-      </el-table-column>
+      <el-table-column fixed prop="id" label="ID"> </el-table-column>
       <el-table-column prop="name" label="Tên" width="120"> </el-table-column>
       <el-table-column prop="manufactureName" label="Tên hãng" width="120">
       </el-table-column>
@@ -39,7 +38,7 @@
       </el-table-column>
       <el-table-column prop="color" label="Màu sắc" width="120">
       </el-table-column>
-      <el-table-column prop="price" label="Giá" width="120"> </el-table-column>
+      <el-table-column prop="price" label="Giá" sortable width="120"> </el-table-column>
 
       <el-table-column prop="resolution" label="Độ phân giải" width="120">
       </el-table-column>
@@ -48,6 +47,14 @@
         label="Phân lớp"
         prop="classifyDes"
         width="120"
+        :filters="[
+          { text: 'DoHoa', value: 'DoHoa' },
+          { text: 'VanPhong', value: 'VanPhong' },
+          { text: 'HocSinh', value: 'HocSinh' },
+          { text: 'Gaming', value: 'Gaming' },
+        ]"
+        :filter-method="filterTag"
+        filter-placement="bottom-end"
       >
       </el-table-column>
     </el-table>
@@ -58,6 +65,9 @@
 import axios from "axios";
 export default {
   methods: {
+    filterTag(value, row) {
+      return row.classifyDes === value;
+    },
     handleClick() {
       console.log("click");
     },

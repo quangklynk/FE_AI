@@ -8,7 +8,7 @@
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b"
-        :default-openeds="['1', '2']"
+        :default-openeds="['1', '2', '4']"
       >
         <el-submenu index="1">
           <template slot="title">
@@ -44,6 +44,21 @@
             </template>
           </el-submenu>
         </router-link>
+        <el-submenu index="4">
+          <template slot="title">
+            <i class="el-icon-s-order"></i>
+            <span>Dữ liệu</span>
+          </template>
+          <router-link to="/brand">
+            <el-menu-item index="4-1">Hãng</el-menu-item>
+          </router-link>
+          <router-link to="/cpu">
+            <el-menu-item index="4-2">CPU</el-menu-item>
+          </router-link>
+          <router-link to="/data">
+            <el-menu-item index="4-3">GPU</el-menu-item>
+          </router-link>
+        </el-submenu>
       </el-menu>
     </el-aside>
 
@@ -60,10 +75,7 @@
 </template>
 
 <script>
-
-export default {
-
-};
+export default {};
 </script>
 
 <style>
